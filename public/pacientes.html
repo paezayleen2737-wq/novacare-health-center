@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacientes · NovaCare Health Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="nc-sidebar"></div>
+
+    <div class="main-column">
+      <div id="nc-header"></div>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h2>Pacientes</h2>
+            <p>Gestiona los pacientes registrados en la clínica</p>
+          </div>
+          <div class="page-header-actions">
+            <div class="search-input">
+              <span id="icon-search"></span>
+              <input type="text" id="search-pacientes" placeholder="Buscar por nombre o documento…" />
+            </div>
+            <button class="btn btn-primary" id="btn-nuevo-paciente">
+              <span id="icon-plus"></span>
+              Nuevo paciente
+            </button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Sexo</th>
+                <th>Teléfono</th>
+                <th>F. nacimiento</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="pacientes-tbody"></tbody>
+          </table>
+          <div id="pacientes-empty" class="empty-state" hidden>
+            <div class="empty-state-icon" id="icon-empty"></div>
+            <div class="empty-state-title">No se encontraron pacientes</div>
+            <div class="empty-state-sub" id="pacientes-empty-sub">Registra el primer paciente con el botón "Nuevo paciente".</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: crear / editar paciente -->
+  <div class="modal-overlay" id="modal-paciente">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-paciente-title">Nuevo paciente</h2>
+          <p>Completa los datos del paciente</p>
+        </div>
+        <button class="modal-close" type="button" id="modal-paciente-close"><span id="icon-close-1"></span></button>
+      </div>
+      <form id="form-paciente">
+        <div class="modal-body">
+          <div class="form-error" id="paciente-form-error" hidden></div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="p-nombre">Nombre</label>
+              <input type="text" id="p-nombre" required />
+            </div>
+            <div class="field">
+              <label for="p-apellido">Apellido</label>
+              <input type="text" id="p-apellido" required />
+            </div>
+            <div class="field">
+              <label for="p-documento">Documento</label>
+              <input type="text" id="p-documento" class="dato" required />
+            </div>
+            <div class="field">
+              <label for="p-sexo">Sexo</label>
+              <select id="p-sexo" required>
+                <option value="" disabled selected>Selecciona…</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="p-telefono">Teléfono</label>
+              <input type="text" id="p-telefono" class="dato" required />
+            </div>
+            <div class="field">
+              <label for="p-fecha-nacimiento">Fecha de nacimiento</label>
+              <input type="date" id="p-fecha-nacimiento" class="dato" />
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="p-email">Correo electrónico (opcional)</label>
+              <input type="email" id="p-email" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancelar-paciente">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btn-guardar-paciente">Guardar paciente</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: historial de citas -->
+  <div class="modal-overlay" id="modal-historial">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-historial-title">Historial de citas</h2>
+          <p>Citas registradas para este paciente</p>
+        </div>
+        <button class="modal-close" type="button" id="modal-historial-close"><span id="icon-close-2"></span></button>
+      </div>
+      <div class="modal-body" id="historial-body">
+        <!-- se llena dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pacientes.js"></script>
+</body>
+</html>

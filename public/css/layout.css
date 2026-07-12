@@ -1,0 +1,321 @@
+/* NovaCare — Layout general (sidebar + header + contenido) */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+/* ============ SIDEBAR ============ */
+
+.sidebar {
+  background: radial-gradient(circle at 25% 0%, var(--color-spark-glow), transparent 45%), var(--color-ink);
+  color: #EAF3EF;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-3);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  margin-bottom: var(--space-7);
+}
+
+.sidebar-logo-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-word {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+.sidebar-logo-word strong {
+  font-weight: 800;
+}
+
+.sidebar-logo-word span {
+  font-weight: 800;
+  color: var(--color-spark);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 11px var(--space-3);
+  border-radius: var(--radius-sm);
+  color: #A9BEB4;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+
+.sidebar-link svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  transition: transform var(--ease);
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.055);
+  color: #FFFFFF;
+}
+
+.sidebar-link:hover svg {
+  transform: translateX(1px);
+}
+
+.sidebar-link.is-active {
+  background: rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
+  border-left-color: var(--color-spark);
+}
+
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: 11px var(--space-3);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #A9BEB4;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background var(--ease), color var(--ease);
+}
+
+.sidebar-logout svg {
+  width: 19px;
+  height: 19px;
+}
+
+.sidebar-logout:hover {
+  background: rgba(255, 255, 255, 0.055);
+  color: #FFFFFF;
+}
+
+/* ============ HEADER ============ */
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header {
+  height: var(--header-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--color-ink-text);
+}
+
+.header-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-ink-text);
+  padding: var(--space-2);
+  margin-right: var(--space-3);
+}
+
+.header-menu-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ============ MENÚ DE USUARIO ============ */
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px 6px 6px;
+  border-radius: var(--radius-full);
+  transition: background var(--ease), border-color var(--ease);
+}
+
+.user-menu-trigger:hover {
+  background: var(--color-bg);
+  border-color: var(--color-border-strong);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.user-menu-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-ink-text);
+}
+
+.user-menu-trigger svg {
+  width: 15px;
+  height: 15px;
+  color: var(--color-ink-faint);
+  transition: transform var(--ease);
+}
+
+.user-menu.is-open .user-menu-trigger svg {
+  transform: rotate(180deg);
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  min-width: 190px;
+  padding: var(--space-2);
+  display: none;
+  z-index: 20;
+}
+
+.user-menu.is-open .user-menu-dropdown {
+  display: block;
+}
+
+.user-menu-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-text);
+  font-size: 0.88rem;
+  text-align: left;
+  transition: background var(--ease);
+}
+
+.user-menu-dropdown-item svg {
+  width: 17px;
+  height: 17px;
+  color: var(--color-ink-soft);
+}
+
+.user-menu-dropdown-item:hover {
+  background: var(--color-bg);
+}
+
+/* ============ CONTENIDO ============ */
+
+.page-content {
+  padding: var(--space-6);
+  flex: 1;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: min(260px, 80vw);
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+    z-index: 30;
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-md);
+  }
+
+  .header {
+    padding: 0 var(--space-4);
+  }
+
+  .header-title {
+    font-size: 1rem;
+  }
+
+  .header-menu-toggle {
+    display: inline-flex;
+  }
+
+  .user-menu-name {
+    display: none;
+  }
+
+  .sidebar-scrim {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 43, 36, 0.4);
+    z-index: 25;
+  }
+
+  .sidebar-scrim.is-visible {
+    display: block;
+  }
+}

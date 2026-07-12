@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · NovaCare Health Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="nc-sidebar"></div>
+
+    <div class="main-column">
+      <div id="nc-header"></div>
+
+      <main class="page-content">
+        <section class="dash-hero">
+          <div>
+            <div class="dash-hero-greeting" id="dash-fecha">—</div>
+            <div class="dash-hero-figure">
+              <span class="dash-hero-number" id="dash-hero-number">—</span>
+              <span class="dash-hero-label" id="dash-hero-label">pacientes en espera hoy</span>
+            </div>
+            <div class="stackbar" id="dash-stackbar">
+              <span data-estado="Pendiente" style="flex:0"></span>
+              <span data-estado="Confirmada" style="flex:0"></span>
+              <span data-estado="Atendida" style="flex:0"></span>
+              <span data-estado="Cancelada" style="flex:0"></span>
+            </div>
+          </div>
+          <div class="dash-hero-divider"></div>
+          <div class="dash-hero-side" id="dash-proxima-wrap">
+            <div class="dash-hero-side-label">Próxima cita</div>
+            <span class="dash-hero-side-value dato" id="dash-proxima-valor">Sin citas próximas</span>
+            <div class="dash-hero-side-sub" id="dash-proxima-sub"></div>
+          </div>
+        </section>
+
+        <section class="dash-grid">
+          <div class="card">
+            <h3>Pacientes en espera</h3>
+            <div class="card-sub">Citas de hoy aún no atendidas</div>
+            <div id="dash-espera-list">
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Próximas citas</h3>
+            <div class="card-sub">Confirmadas y pendientes</div>
+            <div id="dash-proximas-list">
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stat-row">
+          <div class="stat-tile">
+            <span class="stat-tile-icon" id="icon-pacientes"></span>
+            <div><div class="stat-tile-number" id="stat-pacientes">—</div><div class="stat-tile-label">Pacientes registrados</div></div>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-tile-icon" id="icon-medicos"></span>
+            <div><div class="stat-tile-number" id="stat-medicos">—</div><div class="stat-tile-label">Médicos activos</div></div>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-tile-icon" id="icon-citas"></span>
+            <div><div class="stat-tile-number" id="stat-citas">—</div><div class="stat-tile-label">Citas registradas</div></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

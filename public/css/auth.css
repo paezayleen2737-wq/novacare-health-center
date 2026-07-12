@@ -1,0 +1,218 @@
+/* NovaCare — Login */
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ============ PANEL DE MARCA ============ */
+
+.auth-brand {
+  background: radial-gradient(circle at 20% 0%, var(--color-spark-glow), transparent 45%), var(--color-ink);
+  color: #FFFFFF;
+  padding: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.auth-brand-logo .mark {
+  width: 34px;
+  height: 34px;
+}
+
+.auth-brand-logo .wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.auth-brand-logo .wordmark span {
+  color: var(--color-spark);
+}
+
+.auth-brand-body {
+  max-width: 380px;
+}
+
+.auth-brand-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+}
+
+.auth-brand-subtitle {
+  font-size: 0.95rem;
+  color: #C4D2CB;
+  line-height: 1.6;
+}
+
+.auth-brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.auth-brand-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.88rem;
+  color: #DCE6E1;
+}
+
+.auth-brand-feature-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.auth-brand-feature-icon svg {
+  width: 17px;
+  height: 17px;
+  color: var(--color-spark);
+}
+
+.auth-brand-footer {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #7C8F86;
+  letter-spacing: 0.03em;
+}
+
+/* ============ PANEL DE FORMULARIO ============ */
+
+.auth-form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background: var(--color-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-card-heading {
+  margin-bottom: var(--space-6);
+}
+
+.auth-card-heading h1 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.auth-card-heading p {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field-password-wrap {
+  position: relative;
+}
+
+.field-password-wrap input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.field-toggle-visibility {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-ink-faint);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  cursor: pointer;
+  transition: color var(--ease), background var(--ease);
+}
+
+.field-toggle-visibility:hover {
+  color: var(--color-ink-text);
+  background: var(--color-bg);
+}
+
+.field-toggle-visibility svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 20px;
+  margin-top: var(--space-2);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #FFFFFF;
+  animation: nc-spin 700ms linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes nc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 860px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-brand {
+    padding: var(--space-5);
+  }
+
+  .auth-brand-body {
+    max-width: none;
+  }
+
+  .auth-brand-title {
+    font-size: 1.5rem;
+  }
+
+  .auth-brand-features {
+    display: none;
+  }
+
+  .auth-brand-footer {
+    display: none;
+  }
+
+  .auth-form-panel {
+    padding: var(--space-5);
+  }
+}

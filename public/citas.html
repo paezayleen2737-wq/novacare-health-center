@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citas · NovaCare Health Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="nc-sidebar"></div>
+
+    <div class="main-column">
+      <div id="nc-header"></div>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h2>Citas</h2>
+            <p>Agenda y gestiona las citas de la clínica</p>
+          </div>
+          <div class="page-header-actions">
+            <select id="filtro-estado" class="filtro-estado">
+              <option value="">Todos los estados</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Confirmada">Confirmada</option>
+              <option value="Atendida">Atendida</option>
+              <option value="Cancelada">Cancelada</option>
+            </select>
+            <div class="search-input">
+              <span id="icon-search"></span>
+              <input type="text" id="search-citas" placeholder="Buscar por paciente o médico…" />
+            </div>
+            <button class="btn btn-primary" id="btn-nueva-cita">
+              <span id="icon-plus"></span>
+              Nueva cita
+            </button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Motivo</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="citas-tbody"></tbody>
+          </table>
+          <div id="citas-empty" class="empty-state" hidden>
+            <div class="empty-state-icon" id="icon-empty"></div>
+            <div class="empty-state-title">No se encontraron citas</div>
+            <div class="empty-state-sub" id="citas-empty-sub">Registra la primera cita con el botón "Nueva cita".</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: crear / editar cita -->
+  <div class="modal-overlay" id="modal-cita">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-cita-title">Nueva cita</h2>
+          <p>Completa los datos de la cita</p>
+        </div>
+        <button class="modal-close" type="button" id="modal-cita-close"><span id="icon-close-1"></span></button>
+      </div>
+      <form id="form-cita">
+        <div class="modal-body">
+          <div class="form-error" id="cita-form-error" hidden></div>
+
+          <div class="form-grid">
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="c-paciente">Paciente</label>
+              <select id="c-paciente" required>
+                <option value="" disabled selected>Selecciona un paciente…</option>
+              </select>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="c-medico">Médico</label>
+              <select id="c-medico" required>
+                <option value="" disabled selected>Selecciona un médico…</option>
+              </select>
+              <span class="hint" id="c-medico-hint"></span>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="c-motivo">Motivo de consulta</label>
+              <input type="text" id="c-motivo" required placeholder="Ej. Control de rutina" />
+            </div>
+            <div class="field">
+              <label for="c-fecha">Fecha</label>
+              <input type="date" id="c-fecha" class="dato" required />
+            </div>
+            <div class="field">
+              <label for="c-hora">Hora</label>
+              <input type="time" id="c-hora" class="dato" required />
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="c-observaciones">Observaciones (opcional)</label>
+              <textarea id="c-observaciones" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancelar-cita">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btn-guardar-cita">Guardar cita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/citas.js"></script>
+</body>
+</html>
