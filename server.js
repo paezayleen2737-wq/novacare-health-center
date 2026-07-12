@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const { initSchema } = require("./config/database");
 const { notFoundHandler, errorHandler } = require("./middlewares/error.middleware");
@@ -28,12 +29,19 @@ app.use((req, res, next) => {
 
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
 const { sendSuccess } = require("./utils/apiResponse");
 
 app.get("/api/health", (req, res) => {
   sendSuccess(res, {
     mensaje: "NovaCare API operativa",
-    datos: { estado: "ok", timestamp: new Date().toISOString() },
+    datos: {
+      estado: "ok",
+      timestamp: new Date().toISOString(),
+    },
   });
 });
 
@@ -42,9 +50,6 @@ app.use("/api/pacientes", require("./routes/pacientes.routes"));
 app.use("/api/medicos", require("./routes/medicos.routes"));
 app.use("/api/citas", require("./routes/citas.routes"));
 app.use("/api/dashboard", require("./routes/dashboard.routes"));
-// app.use("/api/medicos", require("./routes/medicos.routes"));
-// app.use("/api/citas", require("./routes/citas.routes"));
-// app.use("/api/dashboard", require("./routes/dashboard.routes"));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
@@ -53,7 +58,7 @@ async function start() {
   try {
     await initSchema();
 
-    // Crea el usuario administrador si no existe todavía
+    // Crea automáticamente el administrador si no existe.
     const resultadoAdmin = await ensureAdminUser();
 
     if (resultadoAdmin) {
@@ -65,7 +70,9 @@ async function start() {
     }
 
     app.listen(PORT, () => {
-      console.log(`🏥 NovaCare Health Center corriendo en http://localhost:${PORT}`);
+      console.log(
+        `🏥 NovaCare Health Center corriendo en http://localhost:${PORT}`
+      );
     });
   } catch (err) {
     console.error("❌ No se pudo iniciar el servidor:", err.message);
