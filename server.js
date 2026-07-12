@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const { initSchema } = require("./config/database");
 const { notFoundHandler, errorHandler } = require("./middlewares/error.middleware");
+const { ensureAdminUser } = require("./utils/seed");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -51,6 +52,17 @@ app.use(errorHandler);
 async function start() {
   try {
     await initSchema();
+
+    // Crea el usuario administrador si no existe todavía
+    const resultadoAdmin = await ensureAdminUser();
+
+    if (resultadoAdmin) {
+      console.log(
+        resultadoAdmin.creado
+          ? `✅ Usuario administrador creado automáticamente: ${resultadoAdmin.email}`
+          : `✅ Usuario administrador verificado: ${resultadoAdmin.email}`
+      );
+    }
 
     app.listen(PORT, () => {
       console.log(`🏥 NovaCare Health Center corriendo en http://localhost:${PORT}`);
